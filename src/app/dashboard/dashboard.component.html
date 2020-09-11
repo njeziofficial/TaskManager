@@ -54,10 +54,8 @@
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown"> Poject A</button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" *ngFor="let project of Projects"
-                onclick="return false"  
-                (click)="onProjectChange($event)"
-                >{{project}}</a>
+                <a class="dropdown-item" href="#" *ngFor="let project of Projects" onclick="return false"
+                  (click)="onProjectChange($event)">{{project}}</a>
               </div>
             </div>
           </div>
@@ -130,24 +128,40 @@
             </div>
             <div [id]=" 'cardbody'+ i" class="collapse" data-parent="#accordion1" [ngClass]="(i==0)? 'show': ''">
               <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let member of teamMembersGroup.Members">
-                      <td>{{member.ID}}</td>
-                      <td [style.color]="(member.Status=='Busy')? 'red': 'black'">{{member.Name}}</td>
-                      <td>{{member.Status}}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div *ngIf="i == 0; then firstTemplate; else secondTemplate">
+
+                </div>
+
+                <!-- FIRST TEMPLATE -->
+                <ng-template #firstTemplate>
+                  <div class="card" *ngFor="let member of teamMembersGroup.Members">
+                    <div class="card-header bg-primary text-white">#{{member.ID}} {{member.Name}}</div>
+                    <div class="card-body">{{member.Status}}</div>
+                  </div>
+                </ng-template>
+
+                <!-- SECOND TEMPLATE -->
+                <ng-template #secondTemplate>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let member of teamMembersGroup.Members">
+                        <td>{{member.ID}}</td>
+                        <td [style.color]="(member.Status=='Busy')? 'red': 'black'">{{member.Name}}</td>
+                        <td>{{member.Status}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </ng-template>
               </div>
             </div>
+
           </div>
         </div>
       </div>
