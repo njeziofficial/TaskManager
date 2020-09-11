@@ -9,14 +9,13 @@ export class DashboardComponent implements OnInit {
 
   Designation: string;
   Username: string;
-  NoOfTeamMembers: number;
-  TotalCostOfAllProjects: number;
-  PendingTasks: number;
-  UpcomingProjects: number;
-  ProjectCost: number;
-
-  CurrentExpenditure: number;
+  NoOfTeamMembers: number = 67;
+  TotalCostOfAllProjects = 240;
+  PendingTasks: number = 15;
+  UpcomingProjects: number = 2;
+  ProjectCost: number = 100000
   AvailableFunds: number;
+  CurrentExpenditure: number;
 
   // Arrays
   Clients: string[];
@@ -58,5 +57,28 @@ export class DashboardComponent implements OnInit {
       ]
     }
   }
+  onProjectChange($event) {
+    if ($event.target.innerHTML == "Project A") {
+      this.ProjectCost = 245000;
+      this.CurrentExpenditure = 7800;
+      this.AvailableFunds = 90;
+    }
+    else if ($event.target.innerHTML == "Project B") {
+      this.ProjectCost = 568000;
+      this.CurrentExpenditure = 45000;
+      this.AvailableFunds = 8000;
+    }
 
+    else if ($event.target.innerHTML == "Project C") {
+      this.ProjectCost = 568000;
+      this.CurrentExpenditure = 45000;
+      this.AvailableFunds = 8000000;
+    }
+    else if ($event.target.innerHTML == "Project D") {
+      this.ProjectCost = 900000;
+      this.CurrentExpenditure = 567433;
+      this.AvailableFunds = 200;
+    }
+  }
 }
+    
